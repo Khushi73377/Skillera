@@ -51,7 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["a
             padding: 0;
             display: flex;
             min-height: 100vh;
-        }
+            background: url('job10.webp') no-repeat center center/cover;
+             }
 
         .sidebar {
             background-color: #161b22;
