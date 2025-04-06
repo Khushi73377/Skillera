@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Management</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0d1117;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .admin-table th {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: white;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .approve-btn { background: #2ecc71; }
+        .reject-btn { background: #e74c3c; }
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .status.pending { background: #f39c12; color: black; }
+        .status.approved { background: #2ecc71; }
+        .status.rejected { background: #e74c3c; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Resume Management</h1>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Skills</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>101</td>
+                    <td>Rajesh Kumar</td>
+                    <td>Python, AI, ML</td>
+                    <td><span class="status pending">Pending</span></td>
+                    <td>
+                        <button class="btn approve-btn" onclick="updateStatus(this, 'Approved')">Approve</button>
+                        <button class="btn reject-btn" onclick="updateStatus(this, 'Rejected')">Reject</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Swati Gupta</td>
+                    <td>JavaScript, React</td>
+                    <td><span class="status pending">Pending</span></td>
+                    <td>
+                        <button class="btn approve-btn" onclick="updateStatus(this, 'Approved')">Approve</button>
+                        <button class="btn reject-btn" onclick="updateStatus(this, 'Rejected')">Reject</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>103</td>
+                    <td>Amit Sharma</td>
+                    <td>Java, Spring Boot</td>
+                    <td><span class="status pending">Pending</span></td>
+                    <td>
+                        <button class="btn approve-btn" onclick="updateStatus(this, 'Approved')">Approve</button>
+                        <button class="btn reject-btn" onclick="updateStatus(this, 'Rejected')">Reject</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function updateStatus(button, status) {
+            let row = button.parentElement.parentElement;
+            let statusElement = row.querySelector(".status");
+
+            if (status === "Approved") {
+                statusElement.innerText = "Approved";
+                statusElement.classList.remove("pending", "rejected");
+                statusElement.classList.add("approved");
+            } else {
+                statusElement.innerText = "Rejected";
+                statusElement.classList.remove("pending", "approved");
+                statusElement.classList.add("rejected");
+            }
+
+            // Show both buttons again if needed
+            let buttons = row.querySelectorAll(".btn");
+            buttons.forEach(btn => btn.style.display = "inline-block");
+        }
+    </script>
+
+</body>
+</html>

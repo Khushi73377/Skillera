@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard & Analytics</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0d1117;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 250px;
+            padding: 20px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            width: 80%;
+            height: 300px; /* Reduced height */
+            margin: auto;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%; /* Adjust canvas size */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dashboard & Analytics</h1>
+
+        <!-- Stats Section -->
+        <div class="dashboard">
+            <div class="card">
+                <h2>Total Users</h2>
+                <p id="totalUsers">0</p>
+            </div>
+            <div class="card">
+                <h2>Total Resumes</h2>
+                <p id="totalResumes">0</p>
+            </div>
+            <div class="card">
+                <h2>Active Employers</h2>
+                <p id="activeEmployers">0</p>
+            </div>
+            <div class="card">
+                <h2>Featured Resumes</h2>
+                <p id="featuredResumes">0</p>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-container">
+            <h2>Top Trending Skills</h2>
+            <canvas id="skillsChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Simulated Stats
+        document.getElementById("totalUsers").innerText = "1,245";
+        document.getElementById("totalResumes").innerText = "892";
+        document.getElementById("activeEmployers").innerText = "52";
+        document.getElementById("featuredResumes").innerText = "120";
+
+        // Chart Data
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Python', 'JavaScript', 'React', 'Data Science', 'UI/UX', 'Marketing'],
+                datasets: [{
+                    label: 'Number of Resumes',
+                    data: [350, 300, 280, 260, 200, 180],
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 400
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

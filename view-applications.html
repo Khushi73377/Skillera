@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Applications</title>
+    <link rel="stylesheet" href="style_recruiter.css">
+</head>
+<body>
+
+    <?php include("header.html"); ?>
+
+    <main>
+        <h2>Candidate Applications</h2>
+        
+        <table border="1">
+            <tr>
+                <th>Candidate Name</th>
+                <th>Job Title</th>
+                <th>Skills</th>
+                <th>Resume</th>
+                <th>Action</th>
+            </tr>
+            <?php include("../view-applications.php"); ?>
+        </table>
+    </main>
+
+    <?php include("footer.html"); ?>
+
+</body>
+</html>

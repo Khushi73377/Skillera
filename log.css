@@ -1,0 +1,115 @@
+/* Background Image */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('job15.jpg') no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Transparent Overlay */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+    z-index: -1;
+}
+
+/* Login Box */
+.login-container {
+    background: rgba(255, 255, 255, 0.2); /* Transparent glass effect */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    backdrop-filter: blur(10px); /* Blurry glassmorphism */
+    width: 300px;
+}
+
+/* Title */
+.login-container h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Input Fields */
+.input-box {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.4);
+    color: black;
+    outline: none;
+}
+
+/* Role Select Fix */
+.input-box select {
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #3607f6;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #3607f6;
+}
+
+/* Forgot Password */
+.forgot-password {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+.message-box {
+    display: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

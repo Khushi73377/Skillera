@@ -1,0 +1,56 @@
+<?php
+session_start();
+include("includes/db.php");
+
+if (!isset($_SESSION['recruiter_id'])) {
+    header("Location: login-recruiter.html");
+    exit();
+}
+
+$recruiter_id = $_SESSION['recruiter_id'];
+
+$query = "SELECT name, email, company FROM recruiters WHERE id=?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $recruiter_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$recruiter = $result->fetch_assoc();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="style_recruiter.css">
+</head>
+<body>
+
+    <?php include("header.html"); ?>
+
+    <main>
+        <h2>Update Profile</h2>
+
+        <form action="profile.php" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" name="name" id="name" value="<?= htmlspecialchars($recruiter['name']) ?>" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" value="<?= htmlspecialchars($recruiter['email']) ?>" required>
+
+            <label for="company">Company Name:</label>
+            <input type="text" name="company" id="company" value="<?= htmlspecialchars($recruiter['company']) ?>" required>
+
+            <label for="password">New Password (Optional):</label>
+            <input type="password" name="password" id="password">
+
+            <button type="submit">Update Profile</button>
+        </form>
+    </main>
+
+    <?php include("footer.html"); ?>
+
+</body>
+</html>
+

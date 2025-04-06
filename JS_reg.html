@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet"
+    href="JS_reg.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Job Seeker Registration</h2>
+        <form action="reg_js.php" method="post" id="registration-form">
+            <!-- Full Name -->
+            <div class="input-group">
+                <label for="name"> Name</label>
+                <input type="text" id="name" name="name" placeholder="enter your full name"required>
+            </div>
+
+            <!-- Email -->
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email"placeholder="enter your personal email" required>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="input-group">
+                <label for="contact">Contact Number</label>
+                <input type="tel" id="contact" name="contact" pattern="[0-9]{10}"placeholder="Enter a 10-digit contact number" required>
+              
+            </div>
+
+            <!-- Password -->
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"placeholder="Enter your password" required>
+            </div>
+
+            <!-- Register Button -->
+            <div class="input-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        
+        <!-- Success or Error Message -->
+        <div id="message"></div>
+        
+        <!-- Login Link -->
+        <div class="login-link">
+            <p>Already have an account? <a href="Login.html">Log in</a></p>
+        </div>
+    </div>
+
+    <script>
+        // script.js
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop default submission initially
+
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const contact = document.getElementById('contact').value;
+    const password = document.getElementById('password').value;
+
+    // Contact number validation (must be 10 digits)
+    const contactPattern = /^[0-9]{10}$/;
+    if (!contact.match(contactPattern)) {
+        document.getElementById('message').innerHTML = "<span style='color: red;'>Please enter a valid 10-digit contact number.</span>";
+        return;
+    }
+
+    // If validation passes, allow form submission
+    document.getElementById('registration-form').submit();
+});
+
+    </script>
+</body>
+</html>

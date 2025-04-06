@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #08444e;
+            background: url('job14.avif')no-repeat center top /cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+            width: 100%;
+
+        }
+
+        .container {
+            background-color: #579bac;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        select,button {
+            padding: 10px;
+            margin: 20px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #075681;
+            color: rgb(5, 4, 20);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0e4854;
+        }
+
+        .result {
+            text-align: center;
+            background-color: #0f4f62;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .question 
+        {
+            margin-bottom: 20px;
+        }
+
+        .error-message 
+        {
+            color: red;
+            font-size: 14px;
+            display:none;
+        }
+        .container {
+            background-color: #a3c9d8;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 80%;
+            max-width: 700px;
+            opacity: 0; /* Initially invisible */
+            transform: translateY(50px); /* Start below */
+            transition: opacity 0.2s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        /* Active class to make it appear */
+        .container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+   
+     <div class="container">
+        <h1>Skill Test: Select Your Skill</h1>
+       
+        <label for="skill">Select your skill category:</label>
+        <select id="skill" onchange="loadQuestions()">
+            <option value="">--Select Skill--</option>
+            <option value="frontend">Frontend Developer</option>
+            <option value="backend">Backend Developer</option>
+            <option value="data_scientist">Data Scientist</option>
+            <option value="ui_ux">UI/UX Designer</option>
+            <option value="cybersecurity">Cybersecurity Analyst</option>
+            <option value="cloud_engineer">Cloud Engineer</option>
+        </select>
+
+    <form id="quiz-form"></form>
+      <div id="error-message" class="error-message">Please answer all the questions before submitting!</div>
+    </div>
+    <script>
+         document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector(".container");
+
+            // Add 'active' class after 1 second for the slide-in effect
+            setTimeout(() => {
+                container.classList.add("active");
+            }, 1000);
+        });
+        // Define the questions for each category
+        const questions = {
+            frontend: [
+                {
+                    question: "What does JSX stand for in React?",
+                    options: ["JavaScript XML", "JavaScript Extended", "JavaScript X", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "Which CSS property controls the layout of flexbox items?",
+                    options: ["display", "flex", "flex-direction", "flex-wrap"],
+                    answer: 2
+                },
+                {
+                    question: "What is the purpose of useState in React?",
+                    options: ["Manage local state", "Fetch data", "Handle events", "Create components"],
+                    answer: 0
+                },
+                {
+                    question: "Which HTML tag is used to link an external CSS file?",
+                    options: ["<link>", "<css>", "<style>", "<script>"],
+                    answer: 0
+                },
+                {
+                    question: "How does the Virtual DOM improve performance in React?",
+                    options: ["By storing a copy of the actual DOM", "By reducing the need for rendering", "By improving CSS rendering", "All of the above"],
+                    answer: 1
+                },
+                {
+                    question: "What does the position: absolute CSS property do?",
+                    options: ["Positions the element relative to its closest positioned ancestor", "Fixes the element to the top of the page", "Makes the element disappear", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is the purpose of the useEffect hook in React?",
+                    options: ["To update the UI", "To handle side effects in functional components", "To handle routing", "To render JSX"],
+                    answer: 1
+                },
+                {
+                    question: "How does event delegation work in JavaScript?",
+                    options: ["By attaching event listeners to individual elements", "By attaching a single event listener to a parent element", "By using inline event handlers", "None of the above"],
+                    answer: 1
+                },
+                {
+                    question: "What is the difference between let, const, and var in JavaScript?",
+                    options: ["let is block-scoped, const is function-scoped, var is globally scoped", "let and var are function-scoped, const is block-scoped", "let and var are globally scoped, const is block-scoped", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "How do you create a responsive design using CSS?",
+                    options: ["By using media queries", "By using flexbox only", "By using fixed units", "By using JavaScript only"],
+                    answer: 0
+                }
+            ],
+            backend: [
+                {
+                    question: "What is the purpose of middleware in Express.js?",
+                    options: ["Process requests", "Handle database operations", "Handle errors", "All of the above"],
+                    answer: 3
+                },
+                {
+                    question: "How does Node.js handle asynchronous operations?",
+                    options: ["Callbacks", "Promises", "Async/Await", "All of the above"],
+                    answer: 3
+                },
+                {
+                    question: "What is the role of MongoDB in backend development?",
+                    options: ["A NoSQL database", "A file storage system", "A web framework", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What does the res.send() function do in Express?",
+                    options: ["Sends a response to the client", "Sends a request to the client", "Sets up a route", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "How do you create a REST API using Express.js?",
+                    options: ["By defining routes", "By using MongoDB", "By using WebSockets", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is the difference between synchronous and asynchronous programming?",
+                    options: ["Synchronous blocks code execution, while asynchronous doesn't", "Asynchronous blocks code execution, while synchronous doesn't", "Both block code execution", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "How do you connect a Node.js application to MongoDB?",
+                    options: ["Using Mongoose", "Using SQL", "Using REST", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is the purpose of the package.json file in a Node.js project?",
+                    options: ["It stores dependencies", "It defines scripts", "It contains metadata for the project", "All of the above"],
+                    answer: 3
+                },
+                {
+                    question: "What is the difference between PUT and PATCH HTTP methods?",
+                    options: ["PUT replaces the resource, PATCH updates the resource", "PUT is for deletion, PATCH is for creation", "Both are the same", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is a JWT (JSON Web Token), and how is it used for authentication?",
+                    options: ["A token for transmitting data securely", "A token for session management", "A token for API keys", "None of the above"],
+                    answer: 0
+                }
+               ],
+            data_scientist: [
+                {
+                    question: "What is the difference between supervised and unsupervised learning?",
+                    options: ["Supervised learning uses labeled data, unsupervised uses unlabeled data", "Supervised learning uses unlabeled data, unsupervised uses labeled data", "Both are the same", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "How does a decision tree algorithm work?",
+                    options: ["It splits data based on feature values", "It uses clustering", "It uses linear regression", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is the role of NumPy in data science?",
+                    options: ["It is used for numerical computing", "It is used for data visualization", "It is used for machine learning", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is overfitting in machine learning?",
+                    options: ["When a model performs well on training data but poorly on test data", "When a model is undertrained", "When a model performs equally on all datasets", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "How does gradient descent optimize a model?",
+                    options: ["By minimizing the error", "By increasing the learning rate", "By using a validation set", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is the difference between classification and regression?",
+                    options: ["Classification predicts categories, regression predicts continuous values", "Classification predicts continuous values, regression predicts categories", "Both are the same", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is the purpose of the Pandas library?",
+                    options: ["Data manipulation and analysis", "Data visualization", "Machine learning", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What is a confusion matrix in machine learning?",
+                    options: ["A table used to evaluate the performance of a classification model", "A table for clustering results", "A table for regression analysis", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "How does k-means clustering work?",
+                    options: ["It groups data into clusters based on centroids", "It uses decision trees", "It uses neural networks", "None of the above"],
+                    answer: 0
+                },
+                {
+                    question: "What are the main types of neural networks?",
+                    options: ["Feedforward, Convolutional, Recurrent", "Linear Regression, Logistic Regression", "Decision Trees, Random Forest", "None of the above"],
+                    answer: 0
+                }
+            ],
+        cybersecurity: [
+                {  question: "What does VPN stand for?",
+                   options: ["Virtual Private Network", "Virtual Protected Node", "Very Personal Network", "Verified Protection Network"],
+                   answer: 0
+                },
+                {  question: "What is phishing?",
+                   options: ["A cyber attack tricking users into revealing information", "A method of hacking WiFi", "A coding vulnerability", "A type of firewall"],
+                   answer: 0 
+                },
+                {  question: "What is multi-factor authentication (MFA)?", 
+                   options: ["Using multiple passwords", "Requiring multiple forms of verification", "Encrypting data", "Using a single complex password"],
+                   answer: 1 
+                },
+                {  question: "Which of the following is a type of malware?", 
+                   options: ["Trojan", "Firewall", "VPN", "Backup"], 
+                   answer: 0 
+                },
+                {  question: "What does HTTPS stand for?", 
+                   options: ["HyperText Transfer Protocol Secure", "High Transfer Protocol Security", "Hyperlink Transfer Protocol System", "Highly Trusted Protocol Service"], 
+                   answer: 0 
+                },
+                {  question: "What is a firewall used for?",
+                   options: ["Blocking unauthorized access", "Increasing internet speed", "Storing passwords", "Encrypting data"], 
+                   answer: 0 
+                },
+                {  question: "Which type of attack uses a large volume of traffic to overwhelm a server?", 
+                   options: ["DDoS", "Phishing", "Brute force", "SQL injection"],
+                   answer: 0 
+                },
+                {  question: "Which tool is used for penetration testing?",
+                   options: ["Metasploit", "Excel", "Git", "AWS"],
+                   answer: 0
+                },
+                {  question: "Which encryption method is commonly used for secure online transactions?", 
+                   options: ["AES", "RSA", "SHA", "MD5"], 
+                   answer: 1 
+                },
+                {  question: "What is social engineering in cybersecurity?",
+                   options: ["Tricking people into revealing confidential information", "Hacking a system remotely", "Using encryption to secure data", "Physically tampering with a device"],
+                   answer: 0
+                }
+            ],
+            ui_ux: [
+                { question: "What does UX stand for?", options: ["User Experience", "User Exploration", "User Extension", "User Execution"], answer: 0 },
+                { question: "Which software is commonly used for UI design?", options: ["Figma", "Photoshop", "Excel", "Word"], answer: 0 },
+                { question: "What is wireframing?", options: ["A blueprint for website layout", "A tool for graphic design", "A coding framework", "A data analysis method"], answer: 0 },
+                { question: "Which color model is best for digital screens?", options: ["RGB", "CMYK", "HSV", "Pantone"], answer: 0 },
+                { question: "What is usability testing?", options: ["Evaluating a product by testing it on users", "Testing the speed of a website", "Debugging software", "A/B testing color choices"], answer: 0 },
+                { question: "What is the main goal of UI design?", options: ["Enhance user interaction", "Improve backend processing", "Optimize databases", "Enhance server security"], answer: 0 },
+                { question: "Which design principle focuses on simplicity and clarity?", options: ["Minimalism", "Overloading", "Complexity", "Opacity"], answer: 0 },
+                { question: "What is the purpose of prototyping?", options: ["To visualize and test design ideas", "To develop full applications", "To write HTML code", "To create backend servers"], answer: 0 },
+                { question: "What is the Z-pattern layout used for?", options: ["Scanning web pages", "Database indexing", "Cybersecurity protocols", "Cloud storage management"], answer: 0 },
+                { question: "Which factor affects accessibility the most?", options: ["Contrast and readability", "Database queries", "Server uptime", "Programming language"], answer: 0 }
+            ],
+            cloud_engineer: [
+
+                {
+                    question: "Which cloud provider offers AWS?",
+                    options: ["Amazon", "Google", "Microsoft", "IBM"],
+                    answer: 0 
+                },
+                { 
+                    question: "What does SaaS stand for?",
+                    options: ["Software as a Service", "System as a Service", "Storage as a Service", "Security as a Service"], 
+                    answer: 0
+                },
+                { 
+                    question: "What is a Virtual Private Cloud (VPC)?",
+                    options: ["A private cloud within a public cloud", "A VPN for cloud access", "A cloud storage service", "A dedicated on-premise server"],
+                    answer: 0 
+                },
+                {   question: "Which cloud model allows sharing of resources among multiple organizations?", 
+                    options: ["Public Cloud", "Private Cloud", "Hybrid Cloud", "Community Cloud"], 
+                    answer: 3 
+                },
+                { 
+                    question: "Which of these is an example of Infrastructure as a Service (IaaS)?",
+                    options: ["Google Docs", "AWS EC2", "Dropbox", "Salesforce"],
+                    answer: 1 
+                },
+                {   question: "What does PaaS stand for?",
+                    options: ["Platform as a Service", "Processing as a Service", "Programming as a Service", "Privacy as a Service"],
+                    answer: 0 
+                },
+                {   question: "Which cloud provider offers Google Cloud Platform (GCP)?",
+                    options: ["Amazon", "Google", "Microsoft", "IBM"],
+                    answer: 1 
+                },
+                {   question: "Which of the following is a cloud storage service?",
+                    options: ["AWS S3", "Google Compute Engine", "Azure Kubernetes Service", "IBM Watson"],
+                    answer: 0 
+                },
+                {   question: "What is an advantage of cloud computing?", 
+                    options: ["Scalability", "Higher costs", "Manual backups", "Limited accessibility"],
+                    answer: 0 
+                },
+                {   question: "Which tool is used for cloud orchestration?", 
+                    options: ["Kubernetes", "Slack", "Excel", "GitHub"],
+                    answer: 0 
+                }
+            ],
+        };
+          
+        // Function to dynamically load questions based on skill selection
+        function loadQuestions() {
+    const skill = document.getElementById("skill").value;
+    const form = document.getElementById("quiz-form");
+    form.innerHTML = "";
+
+    if (skill && questions[skill]) {
+        questions[skill].forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
+            questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+            
+            q.options.forEach((option, optIndex) => {
+                questionDiv.innerHTML += `
+                    <label>
+                        <input type="radio" name="q${index}" value="${optIndex}"> ${option}
+                    </label><br>
+                `;
+            });
+            
+            form.appendChild(questionDiv);
+        });
+
+        // Add Submit Button
+        const submitBtn = document.createElement("button");
+        submitBtn.type = "button";
+        submitBtn.textContent = "Submit Test";
+        submitBtn.onclick = submitQuiz;
+        form.appendChild(submitBtn);
+    }
+        }
+      
+        // Function to submit quiz and validate that all questions are answered
+        function submitQuiz() {
+    const form = document.getElementById("quiz-form");
+    const questionsAnswered = form.querySelectorAll("input[type='radio']:checked").length;
+    const totalQuestions = form.querySelectorAll(".question").length;
+
+    if (questionsAnswered < totalQuestions) {
+        document.getElementById("error-message").style.display = "block";
+    } else {
+        alert("Test submitted successfully!");
+        document.getElementById("error-message").style.display = "none";
+    }
+}
+
+let score = 0;
+
+function loadQuestions() {
+    let skill = document.getElementById("skill").value;
+    let quizForm = document.getElementById("quiz-form");
+    quizForm.innerHTML = ""; // Clear previous questions
+    
+    if (skill && questions[skill]) {
+        questions[skill].forEach((q, index) => {
+            let questionHTML = `
+                <div class="question">
+                    <p>${index + 1}. ${q.question}</p>
+                    ${q.options.map((option, i) =>
+                        `<label><input type="radio" name="q${index}" value="${i}"> ${option}</label><br>`).join('')}
+                </div>`;
+            quizForm.innerHTML += questionHTML;
+        });
+        quizForm.innerHTML += `<button type="button" onclick="submitQuiz()">Submit Test</button>`;
+    }
+}
+
+function submitQuiz() {
+    let skill = document.getElementById("skill").value;
+    let selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
+    let totalQuestions = questions[skill].length;
+    
+    if (selectedAnswers.length !== totalQuestions) {
+        document.getElementById("error-message").style.display = "block";
+        return;
+    }
+    
+    score = 0;
+    selectedAnswers.forEach((answer, index) => {
+        if (parseInt(answer.value) === questions[skill][index].answer) {
+            score++;
+        }
+    });
+
+    if (score >= 8) {
+        let jobId = new URLSearchParams(window.location.search).get('job_id');
+        window.location.href = `apply.php?job_id=${jobId}`;
+    } else {
+        alert("You need at least 8/10 to apply for this job. Try again!");
+    }
+}
+
+    </script>
+   </body>
+</html>

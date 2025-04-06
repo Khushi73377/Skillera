@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Status</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            background: #005bb5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #004494;
+        }
+        nav ul li a:hover {
+            background: #003377;
+        }
+        section {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 2px solid #0073e6;
+        }
+        button {
+            background: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #005bb5;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-top: 10px;
+            border: 1px solid #0073e6;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        APPLICATION STATUS
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#apply">Apply for Jobs</a></li>
+            <li><a href="#view">View Applications</a></li>
+            <li><a href="#track">Track Application</a></li>
+        </ul>
+    </nav>
+    
+    <section id="apply">
+        <h2>Apply for Jobs</h2>
+        <button onclick="applyForJob()">Apply Now</button>
+    </section>
+    
+    <section id="view">
+        <h2>View Applications</h2>
+        <div id="applications-list">
+            No applications yet.
+        </div>
+    </section>
+    
+    <section id="track">
+        <h2>Track Application</h2>
+        <input type="text" id="appId" placeholder="Enter Application ID">
+        <button onclick="trackApplication()">Track</button>
+        <div id="status"></div>
+    </section>
+    
+    <script>
+        function applyForJob() {
+            alert('Job application submitted successfully!');
+        }
+        
+        function trackApplication() {
+            let appId = document.getElementById("appId").value;
+            if (appId === "12345") {
+                document.getElementById("status").innerText = "Your application is under review.";
+            } else {
+                document.getElementById("status").innerText = "Application not found.";
+            }
+        }
+    </script>
+</body>
+</html>

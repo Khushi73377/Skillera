@@ -1,0 +1,77 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Post Skill Test Questions</title>
+    <style>
+        /* Basic styling - you can integrate this with your existing admin styles */
+        body { font-family: sans-serif; background-color: #f4f4f4; color: #333; margin: 20px; text-align: center; }
+        .container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); width: 80%; max-width: 600px; margin: 20px auto; }
+        h2 { margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; margin-bottom: 5px; }
+        textarea { resize: vertical; }
+        button { background-color: #5cb85c; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #4cae4c; }
+        .error { color: red; margin-top: 10px; }
+        .success { color: green; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Post New Skill Test Question</h2>
+        <form action="admin_post_questions.php" method="POST">
+            <div class="form-group">
+                <label for="skill">Skill:</label>
+                <select name="skill" id="skill" required>
+                    <option value="">Select Skill</option>
+                    <?php
+                        // Fetch skills from your database and populate options
+                        include("includes/db.php"); // Assuming your database connection file
+                        $skills_query = "SELECT * FROM skills";
+                        $skills_result = mysqli_query($conn, $skills_query);
+                        while ($skill_row = mysqli_fetch_assoc($skills_result)) {
+                            echo "<option value='" . $skill_row['skill_name'] . "'>" . $skill_row['skill_name'] . "</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="question">Question:</label>
+                <textarea name="question" id="question" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="option1">Option 1:</label>
+                <input type="text" name="option1" id="option1" required>
+            </div>
+            <div class="form-group">
+                <label for="option2">Option 2:</label>
+                <input type="text" name="option2" id="option2" required>
+            </div>
+            <div class="form-group">
+                <label for="option3">Option 3:</label>
+                <input type="text" name="option3" id="option3">
+            </div>
+            <div class="form-group">
+                <label for="option4">Option 4:</label>
+                <input type="text" name="option4" id="option4">
+            </div>
+            <div class="form-group">
+                <label for="correct_answer">Correct Answer:</label>
+                <select name="correct_answer" id="correct_answer" required>
+                    <option value="">Select Correct Option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    <option value="4">Option 4</option>
+                </select>
+            </div>
+            <button type="submit">Add Question</button>
+            <?php if (isset($error_message)) echo "<p class='error'>" . $error_message . "</p>"; ?>
+            <?php if (isset($success_message)) echo "<p class='success'>" . $success_message . "</p>"; ?>
+        </form>
+    </div>
+</body>
+</html>

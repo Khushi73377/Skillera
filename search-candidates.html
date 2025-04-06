@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Candidates</title>
+    <link rel="stylesheet" href="style_recruiter.css">
+</head>
+<body>
+
+    <?php include("header.html"); ?>
+
+    <main>
+        <h2>Search & Filter Candidates</h2>
+        
+        <form action="../search-candidates.php" method="GET">
+            <label for="skill">Skill:</label>
+            <input type="text" name="skill" id="skill" placeholder="E.g., Java, Python, React">
+            
+            <label for="experience">Experience (Years):</label>
+            <input type="number" name="experience" id="experience" min="0">
+            
+            <label for="location">Location:</label>
+            <input type="text" name="location" id="location" placeholder="City, Country">
+            
+            <button type="submit">Search</button>
+        </form>
+
+        <h3>Candidate Results</h3>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Skills</th>
+                <th>Experience</th>
+                <th>Location</th>
+                <th>Action</th>
+            </tr>
+            <?php include("../search-candidates.php"); ?>
+        </table>
+    </main>
+
+    <?php include("footer.html"); ?>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Resource Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('job6.webp') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .navbar a:hover {
+            color: #ff7eb3;
+        }
+        .header {
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+            background: #112235;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+        h2 {
+            color: #007bff;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+   <div class="navbar">
+        <a href="homePage.html">Home</a>
+        
+    </div>
+<div class="header">
+        <h1>Blog & Resource Center</h1>
+    </div>
+    
+    <div class="container">
+        <input type="text" class="search-box" id="search" onkeyup="searchArticles()" placeholder="Search articles...">
+        
+        <div class="section" id="industry-insights">
+            <h2>Industry Insights</h2>
+            <p>Stay updated with the latest trends in hiring, in-demand skills, and employer needs.</p>
+        </div>
+        
+        <div class="section" id="skill-development">
+            <h2>Skill Development</h2>
+            <p>Improve your skills through online courses, certifications, and hands-on projects.</p>
+        </div>
+        
+        <div class="section" id="job-search-tips">
+            <h2>Job Search Tips</h2>
+            <p>Get expert advice on resume building, interview techniques, and job search strategies.</p>
+        </div>
+    </div>
+
+    <script>
+        function searchArticles() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                let text = section.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    section.style.display = "block";
+                } else {
+                    section.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

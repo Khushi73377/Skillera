@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories - Skill-Based Recruitment Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background: url('job10.webp') no-repeat center top/cover;
+        }
+
+        header {
+            background-color: #3c5a7a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+       
+        .navbar {
+            display: flex;
+            justify-content: left;
+            background: rgba(85, 178, 232, 0.3);
+            padding: 15px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .navbar a:hover {
+            color: #ff7eb3;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Enhancing the section titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 40px 0;
+            color: #a4b3c3;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .stories-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .story-card {
+            background-color: darkgray;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .story-card:hover {
+            transform: scale(1.05);
+        }
+
+        .story-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .story-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .story-content p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .email {
+            font-size: 0.9rem;
+            color: #007bff;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .story-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="homePage.html">Home</a>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>Success Stories</h1>
+            <p>Read how people found success using our platform.</p>
+        </div>
+    </header>
+
+    <!-- Job Seekers Section -->
+    <section>
+        <h2 class="section-title">Job Seekers</h2>
+        <div class="stories-container">
+            <!-- Job Seeker 1 -->
+            <div class="story-card">
+                <img src="pf1.avif" alt="Arjun Patel">
+                <div class="story-content">
+                    <h3>Arjun Patel</h3>
+                    <p>"I was able to land my first job as a software engineer at a leading tech firm. The Skill-Based Recruitment Portal's features helped me build my resume and connect directly with the best employers in the industry!"</p>
+                    <p class="email">Email: arjun.patel@gmail.com</p>
+                </div>
+            </div>
+
+            <!-- Job Seeker 2 -->
+            <div class="story-card">
+                <img src="pf2.jpg" alt="Priya Sharma">
+                <div class="story-content">
+                    <h3>Priya Sharma</h3>
+                    <p>"The platform helped me connect with recruiters who understood my skills and capabilities. It was an easy process, and now I'm working as a data analyst at a top consulting firm."</p>
+                    <p class="email">Email: priya.sharma@gmail.com</p>
+                </div>
+            </div>
+
+            <!-- Job Seeker 3 -->
+            <div class="story-card">
+                <img src="pf3.webp" alt="Vikram Singh">
+                <div class="story-content">
+                    <h3>Vikram Singh</h3>
+                    <p>"Thanks to the Skill-Based Recruitment Portal, I was able to find a great opportunity as a marketing manager. The platform's easy-to-use interface and expert recommendations made the job search process smoother!"</p>
+                    <p class="email">Email: vikram.singh@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employers Section -->
+    <section>
+        <h2 class="section-title">Employers</h2>
+        <div class="stories-container">
+            <!-- Employer 1 -->
+            <div class="story-card">
+                <img src="pf6.jpg" alt="Anjali Gupta">
+                <div class="story-content">
+                    <h3>Anjali Gupta</h3>
+                    <p>"As an employer, I was able to find talented candidates quickly and efficiently. The platform helped us identify the right candidates for our company, and we now have an amazing team of professionals!"</p>
+                    <p class="email">Email: anjali.gupta@techco.com</p>
+                </div>
+            </div>
+
+            <!-- Employer 2 -->
+            <div class="story-card">
+                <img src="https://randomuser.me/api/portraits/men/50.jpg" alt="Ravi Kumar">
+                <div class="story-content">
+                    <h3>Ravi Kumar</h3>
+                    <p>"We found the hiring process to be much smoother with Skill-Based Recruitment Portal. The system helped us shortlist the right candidates based on skillsets, and we’ve built a fantastic team."</p>
+                    <p class="email">Email: ravi.kumar@innovate.com</p>
+                </div>
+            </div>
+
+            <!-- Employer 3 -->
+            <div class="story-card">
+                <img src="pf4.jpg" alt="Neha Reddy" style="width:120px;height:90px;">
+                <div class="story-content">
+                    <h3>Neha Reddy</h3>
+                    <p>"We have been able to attract and hire the best candidates thanks to Skill-Based Recruitment Portal. The platform made it easy for us to search for qualified professionals and streamline the hiring process."</p>
+                    <p class="email">Email: neha.reddy@startup.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+        // JavaScript code for any future interactivity or enhancements
+        window.onload = function () {
+            console.log("Skill-Based Recruitment Portal: Success Stories page loaded.");
+        };
+    </script>
+
+</body>
+</html>

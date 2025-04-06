@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Management</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0d1117;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            width: 80%;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: white;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .add-btn { background: #2ecc71; }
+        .edit-btn { background: #3498db; }
+        .delete-btn { background: #e74c3c; }
+
+        .skill-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .skill-table th, .skill-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .skill-table th {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Skill Management</h1>
+
+        <!-- Input Fields -->
+        <div class="input-group">
+            <input type="text" id="skillName" placeholder="Enter Skill Name">
+            <select id="skillCategory">
+                <option value="Programming">Programming</option>
+                <option value="Design">Design</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Finance">Finance</option>
+            </select>
+            <button class="btn add-btn" onclick="addSkill()">Add Skill</button>
+        </div>
+
+        <!-- Skill Table -->
+        <table class="skill-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Skill Name</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="skillTableBody">
+                <tr>
+                    <td>1</td>
+                    <td>Python</td>
+                    <td>Programming</td>
+                    <td>
+                        <button class="btn edit-btn" onclick="editSkill(this)">Edit</button>
+                        <button class="btn delete-btn" onclick="deleteSkill(this)">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>UI/UX Design</td>
+                    <td>Design</td>
+                    <td>
+                        <button class="btn edit-btn" onclick="editSkill(this)">Edit</button>
+                        <button class="btn delete-btn" onclick="deleteSkill(this)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let skillCount = 2; // To keep track of skill IDs
+
+        function addSkill() {
+            let skillName = document.getElementById("skillName").value;
+            let skillCategory = document.getElementById("skillCategory").value;
+
+            if (skillName.trim() === "") {
+                alert("Please enter a skill name.");
+                return;
+            }
+
+            skillCount++; // Increment skill ID
+
+            let table = document.getElementById("skillTableBody");
+            let row = table.insertRow();
+            row.innerHTML = `
+                <td>${skillCount}</td>
+                <td>${skillName}</td>
+                <td>${skillCategory}</td>
+                <td>
+                    <button class="btn edit-btn" onclick="editSkill(this)">Edit</button>
+                    <button class="btn delete-btn" onclick="deleteSkill(this)">Delete</button>
+                </td>
+            `;
+
+            document.getElementById("skillName").value = ""; // Clear input field
+        }
+
+        function editSkill(button) {
+            let row = button.parentElement.parentElement;
+            let skillName = row.cells[1].innerText;
+            let newSkillName = prompt("Edit Skill Name:", skillName);
+
+            if (newSkillName !== null && newSkillName.trim() !== "") {
+                row.cells[1].innerText = newSkillName;
+            }
+        }
+
+        function deleteSkill(button) {
+            let row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+
+</body>
+</html>

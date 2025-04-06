@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Skill-Based Recruitment Portal</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            background: url('job7.avif') no-repeat center top/cover;
+            color: white;
+            text-align: center;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff7eb3;
+        }
+
+        /* Header */
+        .header {
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* FAQ Section */
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid #007bff;
+            width: 60%;
+            margin: 30px auto;
+            color: black;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .faq-item {
+            border: 2px solid #007bff;
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .faq-item:hover {
+            background: #d0e6ff;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            color: #555;
+        }
+
+        /* Search Box */
+        .search-container {
+            margin: 30px auto;
+            max-width: 400px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #ff7eb3;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff4f8b;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+   <div class="navbar">
+        <a href="homePage.html">Home</a>
+        <a href="faq.html">FAQ</a>
+    </div>
+
+
+
+    <!-- FAQ Header -->
+    <div class="content">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about Skill Era.</p>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I create an account? <span>+</span></div>
+            <div class="faq-answer">You can create an account by clicking the "Sign Up" button and filling out the required details.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is the recruitment process? <span>+</span></div>
+            <div class="faq-answer">Employers post job listings with required skills. Job seekers apply, and the system matches candidates based on their skills.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What are the payment plans? <span>+</span></div>
+            <div class="faq-answer">We offer free and premium plans. Premium plans provide advanced filtering and priority listings.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How can I contact support? <span>+</span></div>
+            <div class="faq-answer">You can contact support via email at support@skillrecruit.com or helpdesk@skillrecruit.com.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How can I reset my password? <span>+</span></div>
+            <div class="faq-answer">Click on the "Forgot Password" link on the login page and follow the instructions to reset your password.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can employers verify candidate skills? <span>+</span></div>
+            <div class="faq-answer">Yes, we provide skill assessment tests and certification options to verify candidates' skills.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I update my profile information? <span>+</span></div>
+            <div class="faq-answer">You can update your profile details by navigating to your account settings and making necessary changes.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Is my data safe on this platform? <span>+</span></div>
+            <div class="faq-answer">Yes, we use advanced security measures to protect your personal and professional data.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What types of jobs are available? <span>+</span></div>
+            <div class="faq-answer">We offer jobs across multiple industries, including IT, healthcare, finance, and more, based on skill-based matching.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can I apply for multiple jobs at once? <span>+</span></div>
+            <div class="faq-answer">Yes, you can apply for multiple job openings that match your skills and preferences.</div>
+        </div>
+    </div>
+
+    <!-- JavaScript for FAQ Accordion -->
+    <script>
+        document.querySelectorAll(".faq-item").forEach(item => {
+            item.addEventListener("click", () => {
+                const answer = item.querySelector(".faq-answer");
+                const sign = item.querySelector(".faq-question span");
+                const isVisible = answer.style.display === "block";
+                document.querySelectorAll(".faq-answer").forEach(a => a.style.display = "none");
+                document.querySelectorAll(".faq-question span").forEach(s => s.textContent = "+");
+                answer.style.display = isVisible ? "none" : "block";
+                sign.textContent = isVisible ? "+" : "-";
+            });
+        });
+    </script>
+
+</body>
+</html>
